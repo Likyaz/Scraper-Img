@@ -59,23 +59,23 @@
 
                     $error = array();
                     if(empty($projet))
-                        @array_push($error, "Entrer le nom du projet");
+                        array_push($error, "Entrer le nom du projet");
                     if(empty($url))
-                        @array_push($error, "Entrer une URL");
+                        array_push($error, "Entrer une URL");
                     if(empty($userAgent))
-                        @array_push($error, "veuillez choisire un User Agent");
+                        array_push($error, "veuillez choisire un User Agent");
 
                     if(strlen($projet) < 2)
-                        @array_push($error, "Le nom du projet doit contenire au moin 2 character");
+                        array_push($error, "Le nom du projet doit contenire au moin 2 character");
 
                     if (!filter_var($url, FILTER_VALIDATE_URL))
-                        @array_push($error, "l'url n'est pas valide");
+                        array_push($error, "l'url n'est pas valide");
 
                     if($timeOut < 1)
-                        @array_push($error, "Le time out n'est pas valide");
+                        array_push($error, "Le time out n'est pas valide");
 
                     if(empty($png || $jpg || $gif))
-                        @array_push($error, "choisire une extension pour le type d'image");
+                        array_push($error, "choisire une extension pour le type d'image");
 
                     //User agent : 1 parmis la liste
                     $valideRefUserAgent = false;
