@@ -5,6 +5,7 @@
         <meta charset="utf-8" />
         <title>Scraper</title>
         <meta name="description" content="We need to scrape">
+        <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     </head>
     <body>
         <header>
@@ -56,24 +57,25 @@
                     $jpg = $_POST["jpg"];
                     $gif = $_POST["gif"];
 
+                    $error = array();
                     if(empty($projet))
-                        $error |= 0x0001;
+                        @array_push($error, "Entrer le nom du projet");
                     if(empty($url))
-                        $error |= 0x0002;
+                        @array_push($error, "Entrer une URL");
                     if(empty($userAgent))
-                        $error |= 0x0004;
+                        @array_push($error, "veuillez choisire un User Agent");
 
                     if(strlen($projet) < 2)
-                        $error |= 0x0008;
+                        @array_push($error, "Le nom du projet doit contenire au moin 2 character");
 
                     if (!filter_var($url, FILTER_VALIDATE_URL))
-                        $error |= 0x0010;
+                        @array_push($error, "l'url n'est pas valide");
 
                     if($timeOut < 1)
-                        $error |= 0x0020;
+                        @array_push($error, "Le time out n'est pas valide");
 
                     if(empty($png || $jpg || $gif))
-                        $error |= 0x0040;
+                        @array_push($error, "choisire une extension pour le type d'image");
 
                     //User agent : 1 parmis la liste
                     $valideRefUserAgent = false;
@@ -82,25 +84,12 @@
                             $valideRefUserAgent = true;
                     }
                     if(!$valideRefUserAgent)
-                        $error |= 0x0080;
+                        @array_push($error, "l'user agent n'est pas valide");
 
-                    if($error != 0) {
-                        if($error & 0x0001)
-                            echo "Entrer le nom du projet<br>";
-                        if($error & 0x0002)
-                            echo "Entrer une URL<br>";
-                        if($error & 0x0004)
-                            echo "veuillez choisire un User Agent<br>";
-                        if($error & 0x0008)
-                            echo "Le nom du projet doit contenire au moin 2 character<br>";
-                        if($error & 0x0010)
-                            echo "l'url n'est pas valide<br>";
-                        if($error & 0x0020)
-                            echo "Le time out n'est pas valide<br>";
-                        if($error & 0x0040)
-                            echo "choisire une extension pour le type d'image<br>";
-                        if($error & 0x0080)
-                            echo "l'user agent n'est pas valide<br>";
+                    if(!empty($error)) {
+                        foreach ($error as $err) {
+                            echo $err."<br>";
+                        }
                     }
                     else {
                         if($userAgent == "random") {
@@ -182,7 +171,7 @@
                                 }
                             }
                         }
-                        
+
                     }
                 }
             ?>
