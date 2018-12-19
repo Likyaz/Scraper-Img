@@ -5,7 +5,6 @@
         <meta charset="utf-8" />
         <title>Scraper</title>
         <meta name="description" content="We need to scrape">
-        <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     </head>
     <body>
         <header>
