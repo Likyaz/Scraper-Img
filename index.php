@@ -45,7 +45,6 @@
                 ];
 
                 if(!empty($_POST)) {
-                    $error = 0;
 
                     $projet = $_POST["projet"];
                     $url = $_POST["url"];
